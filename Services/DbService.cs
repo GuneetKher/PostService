@@ -30,7 +30,8 @@ namespace PostService.Services
         {
             var filter = Builders<Post>.Filter.And(
                 Builders<Post>.Filter.Eq(p => p.IsMod, false),
-                Builders<Post>.Filter.Not(Builders<Post>.Filter.AnyIn(p => p.FlaggedBy, new[] { userId }))
+                Builders<Post>.Filter.Not(Builders<Post>.Filter.AnyIn(p => p.FlaggedBy, new[] { userId })),
+                Builders<Post>.Filter.Eq(p => p.ParentID, null)
             );
 
             var projection = Builders<Post>.Projection.Exclude(p => p.FlaggedBy);
@@ -58,7 +59,7 @@ namespace PostService.Services
         public async Task<List<Post>> GetCommentsByParentIdAsync(string parentId)
         {
             var filter = Builders<Post>.Filter.Eq(c => c.ParentID, parentId);
-            var comments = await _comments.Find(filter).ToListAsync();
+            var comments = await _posts.Find(filter).ToListAsync();
             return comments;
         }
 

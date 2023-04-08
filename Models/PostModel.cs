@@ -16,6 +16,9 @@ namespace PostService.Models
         [BsonElement("author")]
         public string Author { get; set; }
 
+        [BsonElement("authorname")]
+        public string AuthorName { get; set; }
+
         [BsonElement("text")]
         public string Text { get; set; }
 
@@ -29,7 +32,7 @@ namespace PostService.Models
         public bool IsMod { get; set; }
 
         [BsonElement("flaggedby")]
-        public string[] FlaggedBy { get; set; }
+        public string[]? FlaggedBy { get; set; }
     }
 
 }

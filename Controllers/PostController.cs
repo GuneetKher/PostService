@@ -68,9 +68,9 @@ public class PostController : ControllerBase
     }
 
     [HttpGet("comments/{postId}")]
-    public async Task<ActionResult<List<Post>>> GetCommentsByParentId(string parentId)
+    public async Task<ActionResult<List<Post>>> GetCommentsByParentId(string postId)
     {
-        var comments = await _postService.GetCommentsByParentIdAsync(parentId);
+        var comments = await _postService.GetCommentsByParentIdAsync(postId);
         if (comments == null)
         {
             return NotFound();
