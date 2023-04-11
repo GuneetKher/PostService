@@ -33,6 +33,7 @@ namespace PostService.Models
 
         [BsonElement("flaggedby")]
         public string[]? FlaggedBy { get; set; }
+        
     }
 
 }

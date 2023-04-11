@@ -75,5 +75,11 @@ namespace PostService.Services
             await _posts.ReplaceOneAsync(filter, post);
         }
 
+        public async Task<List<Post>> AllPostsAsync()
+        {
+            var filter = Builders<Post>.Filter.Eq(p => p.IsMod, false);
+            var posts = await _posts.Find(filter).ToListAsync();
+            return posts;
+        }
     }
 }
